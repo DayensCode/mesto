@@ -1,0 +1,17 @@
+.popup__input {
+	max-width: 358px;
+	border: none;
+	border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.popup__input:focus {
+	outline: none;
+}
+
+.popup__input::-ms-input-placeholder {
+	font-family: 'Inter', Arial, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+}
