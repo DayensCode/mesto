@@ -13,5 +13,6 @@
 	.popup__container {
 		max-width: 282px;
 		margin: 123px 0 0 19px;
+		padding: 25px 22px;
 	}
 }
