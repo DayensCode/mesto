@@ -3,9 +3,6 @@
 	max-width: 282px;
 	min-height: 361px;
 	border-radius: 10px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
 }
 
 @media screen and (max-width: 880px) {
