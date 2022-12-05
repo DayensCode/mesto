@@ -1,7 +1,7 @@
 .popup__close-button-for-view {
+	margin-top: 58px;
 	width: 32px;
 	height: 32px;
-	margin-top: 58px;
 	border: none;
 	background: none;
 	background-image: url(../../../images/popup-close-icon.svg);

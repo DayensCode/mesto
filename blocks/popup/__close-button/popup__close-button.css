@@ -7,8 +7,8 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	position: absolute;
-	bottom: 320px;
-	left: 430px;
+	top: -30px;
+	right: -40px;
 	cursor: pointer;
 }
 
@@ -20,8 +20,8 @@
 	.popup__close-button {
 		width: 20px;
 		height: 20px;
-		top: -35px;
-		left: 262px;
+		top: -30px;
+		right: 1px;
 		background-size: contain;
 	}
 }
