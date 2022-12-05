@@ -22,7 +22,7 @@ const nameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__subtitle');
 
 // Функции открытия-закрытия попапов
-const openEditPopup = function() {
+const openPopup = function() {
 	popupElement.classList.add('popup_opened');
 	nameInput.value=nameProfile.textContent;
 	jobInput.value=jobProfile.textContent;
@@ -42,7 +42,7 @@ const closeAddPopup = function() {
 
 
 // Навесили слушатели клика по кнопкам открытия-закрыия попапов
-popupOpenEditButtonElement.addEventListener('click', openEditPopup);
+popupOpenEditButtonElement.addEventListener('click', openPopup);
 popupOpenAddButtonElement.addEventListener('click', openAddPopup);
 
 popupCloseButtonElement.addEventListener('click', closePopup);
@@ -88,6 +88,7 @@ const generateCard = (dataCard) => {
 	const trash = newCard.querySelector('.element__trash');
    const title = newCard.querySelector('.element__title');
 	const photo = newCard.querySelector('.element__photo');
+
 	like.addEventListener('click', likeHandler);
 	trash.addEventListener('click', handlerDeleteCard);
    title.textContent = dataCard.name;
@@ -109,11 +110,6 @@ const generateCard = (dataCard) => {
 	popupCloseViewButtonElement.addEventListener('click', closeViewPopup);
    return newCard;
 }
-
-const giveLike = function() {
-   likeButtonElement.classList.add('element__like_active');
-}
-
 
 // Отрисовка карточек
 const renderCard = (dataCard) => {
