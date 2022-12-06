@@ -10,6 +10,15 @@
 	cursor: pointer;
 }
 
+@media screen and (max-width: 880px) {
+	.popup__close-button-for-view {
+		width: 20px;
+		height: 20px;
+		background-size: contain;
+		margin: 0 0 16px 220px;
+	}
+}
+
 .popup__close-button:hover {
 	opacity: .6;
 }

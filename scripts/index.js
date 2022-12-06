@@ -11,12 +11,12 @@ const popupDescription = document.querySelector('.popup__description');
 const popupOpenEditButtonElement = document.querySelector('.profile__edit-button');
 const popupOpenAddButtonElement = document.querySelector('.profile__add-button');
 
-const popupCloseEditButtonElement = popupEditElement.querySelector('.popup__close-button-for-edit');
-const popupCloseAddButtonElement = popupAddElement.querySelector('.popup__close-button-for-add');
+const popupCloseEditButtonElement = document.querySelector('.popup__close-button-for-edit');
+const popupCloseAddButtonElement = document.querySelector('.popup__close-button-for-add');
 const popupCloseViewButtonElement = document.querySelector('.popup__close-button-for-view');
 
-const formEditElement = popupEditElement.querySelector('.popup__form_edit');
-const formAddElement = popupAddElement.querySelector('.popup__form_add');
+const formEditElement = document.querySelector('.popup__form_edit');
+const formAddElement = document.querySelector('.popup__form_add');
 
 const nameInput = formEditElement.querySelector('.popup__input_type_name');
 const jobInput = formEditElement.querySelector('.popup__input_type_info');
@@ -30,35 +30,25 @@ const jobProfile = document.querySelector('.profile__subtitle');
 const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
 
 // Функции открытия-закрытия попапов
-function openPopup(popup) {
-	popup.classList.add('popup_opened');
-}
+function openPopup(element) {
+	element.classList.add('popup_opened');
+};
 
-const openEditPopup = function () {
-	popupEditElement.classList.add('popup_opened');
-	nameInput.value=nameProfile.textContent;
-	jobInput.value=jobProfile.textContent;
+function closePopup (element) {
+	element.classList.remove('popup_opened');
 }
-
-const openAddPopup = function() {
-	popupAddElement.classList.add('popup_opened');
-}
-
-const closePopup = function() {
-	popupEditElement.classList.remove('popup_opened');
-}
-
-const closeAddPopup = function() {
-	popupAddElement.classList.remove('popup_opened');
-}
-
 
 // Навесили слушатели клика по кнопкам открытия-закрыия попапов
-popupOpenEditButtonElement.addEventListener('click', openEditPopup);
-popupOpenAddButtonElement.addEventListener('click', openAddPopup);
+popupOpenEditButtonElement.addEventListener('click', (evt) => {
+	openPopup(popupEditElement);
+	nameInput.value=nameProfile.textContent;
+	jobInput.value=jobProfile.textContent;
+});
+popupOpenAddButtonElement.addEventListener('click', (evt) => { openPopup(popupAddElement)});
 
-popupCloseEditButtonElement.addEventListener('click', closePopup);
-popupCloseAddButtonElement.addEventListener('click', closeAddPopup);
+popupCloseEditButtonElement.addEventListener('click', (evt) => { closePopup(popupEditElement)});
+popupCloseAddButtonElement.addEventListener('click', (evt) => { closePopup(popupAddElement)});
+popupCloseViewButtonElement.addEventListener('click', (evt) => { closePopup(popupViewElement)});
 
 
 // Функции отправки-сохранения введенных значений
@@ -66,7 +56,7 @@ function handleEditFormSubmit (evt) {
 	evt.preventDefault();
 	nameProfile.textContent=nameInput.value;
 	jobProfile.textContent=jobInput.value;
-	closePopup();
+	closePopup(popupEditElement);
 }
 
 function handleAddFormSubmit (evt) {
@@ -75,7 +65,7 @@ function handleAddFormSubmit (evt) {
 						link: mestoLinkInput.value })
 	mestoTitleInput.value = '';
 	mestoLinkInput.value = '';
-	closeAddPopup();
+	closePopup(popupAddElement);
 };
 
 // Навесили слушатели отправки-сохранения на форму
@@ -104,17 +94,12 @@ const generateCard = (dataCard) => {
 	photo.alt = dataCard.name;
 	photo.src = dataCard.link;
 
-	const openViewPopup = function() {
-		popupViewElement.classList.add('popup_opened');
+	photo.addEventListener('click', (evt) => {
+		openPopup(popupViewElement);
 		popupPhoto.src = dataCard.link;
 		popupPhoto.alt = dataCard.name;
 		popupDescription.textContent = dataCard.name;
-	}
-	const closeViewPopup = function() {
-		popupViewElement.classList.remove('popup_opened');
-	}
-	photo.addEventListener('click', openViewPopup);
-	popupCloseViewButtonElement.addEventListener('click', closeViewPopup);
+	});
    return newCard;
 }
 
