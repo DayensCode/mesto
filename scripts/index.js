@@ -11,9 +11,7 @@ const popupDescription = document.querySelector('.popup__description');
 const popupOpenEditButtonElement = document.querySelector('.profile__edit-button');
 const popupOpenAddButtonElement = document.querySelector('.profile__add-button');
 
-const popupCloseEditButtonElement = document.querySelector('.popup__close-button-for-edit');
-const popupCloseAddButtonElement = document.querySelector('.popup__close-button-for-add');
-const popupCloseViewButtonElement = document.querySelector('.popup__close-button-for-view');
+const buttonCloseList = document.querySelectorAll('.popup__close-button');
 
 const formEditElement = document.querySelector('.popup__form_edit');
 const formAddElement = document.querySelector('.popup__form_add');
@@ -29,13 +27,37 @@ const jobProfile = document.querySelector('.profile__subtitle');
 // Получаем тимплейт
 const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
 
+
 // Функции открытия-закрытия попапов
 function openPopup(element) {
 	element.classList.add('popup_opened');
+	document.addEventListener('click', closePopupByOverlay);
+	document.addEventListener('keydown', closePopupByEsc);
 };
 
 function closePopup (element) {
 	element.classList.remove('popup_opened');
+	document.removeEventListener('click', closePopupByOverlay);
+	document.removeEventListener('keyup', closePopupByEsc);
+}
+
+buttonCloseList.forEach(btn => {
+	const popup = btn.closest('.popup');
+	btn.addEventListener('click', () => closePopup(popup)); 
+	})
+
+
+//По оверлэю
+function closePopupByOverlay(e) {
+	if (e.target.classList.contains('popup_opened'))
+	closePopup(e.target);
+}
+
+//По Esc
+function closePopupByEsc(e) {
+	if (e.key === 'Escape') {
+	closePopup(document.querySelector('.popup_opened'));
+	}
 }
 
 // Навесили слушатели клика по кнопкам открытия-закрыия попапов
@@ -45,10 +67,6 @@ popupOpenEditButtonElement.addEventListener('click', (evt) => {
 	jobInput.value=jobProfile.textContent;
 });
 popupOpenAddButtonElement.addEventListener('click', (evt) => { openPopup(popupAddElement)});
-
-popupCloseEditButtonElement.addEventListener('click', (evt) => { closePopup(popupEditElement)});
-popupCloseAddButtonElement.addEventListener('click', (evt) => { closePopup(popupAddElement)});
-popupCloseViewButtonElement.addEventListener('click', (evt) => { closePopup(popupViewElement)});
 
 
 // Функции отправки-сохранения введенных значений
@@ -63,8 +81,7 @@ function handleAddFormSubmit (evt) {
 	evt.preventDefault();
 	renderCard({	name: mestoTitleInput.value, 
 						link: mestoLinkInput.value })
-	mestoTitleInput.value = '';
-	mestoLinkInput.value = '';
+	formAddElement.reset();
 	closePopup(popupAddElement);
 };
 

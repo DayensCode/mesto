@@ -6,10 +6,3 @@
 	flex-direction: column;
 	position: relative;
 }
-
-@media screen and (max-width: 880px) {
-	.popup__view-container {
-		margin-top: 10%;
-		padding: 16px;
-	}
-}

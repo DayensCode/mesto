@@ -1,6 +1,6 @@
 .popup__input {
 	max-width: 358px;
-	margin: 0 0 28px 0;
+	margin: 14px 0 0 0;
 	border: none;
 	border-bottom: 1px solid rgba(0, 0, 0, .2);
 	cursor: pointer;
@@ -15,6 +15,6 @@
 	outline: none;
 }
 
-.popup__input:last-of-type {
+.popup__input:first-of-type {
 	margin: 0;
 }
