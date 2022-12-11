@@ -7,7 +7,6 @@
 	background-color: black;
 	color: white;
 	margin: 34px 0 0 0;
-	border-radius: 2px;
 	font-family: 'Inter', Arial, sans-serif;
 	font-style: normal;
 	font-weight: 400;
@@ -18,7 +17,7 @@
 }
 
 .popup__save-button:hover {
-	opacity: .8
+	opacity: .8;
 }
 
 @media screen and (max-width: 880px) {
