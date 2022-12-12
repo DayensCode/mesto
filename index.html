@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="field">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
             <img src="./images/header-logo.svg" alt="Логотип Место." class="header__logo" />
         </header>
 
-        <main>
+        <main class="content">
             <section class="profile" aria-label="Профиль">
                 <div class="profile__user">
                     <img src="./images/profile-avatar.jpg" alt="Аватар профиля." class="profile__avatar" />
@@ -56,7 +56,7 @@
                     <span  id="name-card-error" class=" popup__error popup__error_visible"></span>
                     <input type="url" id="link" class="popup__input popup__input_type_mesto-link" name="link" placeholder="Ссылка на картинку" required>
                     <span id="link-error" class=" popup__error popup__error_visible"></span>
-                    <button class="popup__save-button popup__save-button_disabled" type="submit">
+                    <button class="popup__save-button popup__save-button_disabled popup__save-button_for_add" type="submit" disabled required>
                         Создать
                     </button>
                 </form>

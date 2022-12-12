@@ -12,6 +12,7 @@ const popupOpenEditButtonElement = document.querySelector('.profile__edit-button
 const popupOpenAddButtonElement = document.querySelector('.profile__add-button');
 
 const buttonCloseList = document.querySelectorAll('.popup__close-button');
+const saveButtonElement = document.querySelector('.popup__save-button_for_add');
 
 const formEditElement = document.querySelector('.popup__form_edit');
 const formAddElement = document.querySelector('.popup__form_add');
@@ -31,14 +32,14 @@ const cardTemplate = document.querySelector('#element-template').content.querySe
 // Функции открытия-закрытия попапов
 function openPopup(element) {
 	element.classList.add('popup_opened');
-	document.addEventListener('click', closePopupByOverlay);
+	element.addEventListener('click', closePopupByOverlay);
 	document.addEventListener('keydown', closePopupByEsc);
 };
 
 function closePopup (element) {
 	element.classList.remove('popup_opened');
 	document.removeEventListener('click', closePopupByOverlay);
-	document.removeEventListener('keyup', closePopupByEsc);
+	document.removeEventListener('keydown', closePopupByEsc);
 }
 
 buttonCloseList.forEach(btn => {
@@ -66,7 +67,8 @@ popupOpenEditButtonElement.addEventListener('click', (evt) => {
 	nameInput.value=nameProfile.textContent;
 	jobInput.value=jobProfile.textContent;
 });
-popupOpenAddButtonElement.addEventListener('click', (evt) => { openPopup(popupAddElement)});
+popupOpenAddButtonElement.addEventListener('click', (evt) => {
+	openPopup(popupAddElement)});
 
 
 // Функции отправки-сохранения введенных значений
@@ -77,12 +79,18 @@ function handleEditFormSubmit (evt) {
 	closePopup(popupEditElement);
 }
 
+function disableSaveButton (btn) {
+   btn.classList.add('popup__save-button_disabled');
+	btn.disabled = true;
+}
+
 function handleAddFormSubmit (evt) {
 	evt.preventDefault();
 	renderCard({	name: mestoTitleInput.value, 
 						link: mestoLinkInput.value })
 	formAddElement.reset();
 	closePopup(popupAddElement);
+	disableSaveButton(saveButtonElement);
 };
 
 // Навесили слушатели отправки-сохранения на форму
@@ -90,7 +98,7 @@ formEditElement.addEventListener('submit', handleEditFormSubmit);
 formAddElement.addEventListener('submit', handleAddFormSubmit);
 
 // Функция удаления карточки
-const handlerDeleteCard = (event) => {
+const handleDeleteCard = (event) => {
 	event.target.closest('.element').remove();
 }
 
@@ -106,7 +114,7 @@ const generateCard = (dataCard) => {
 	const photo = newCard.querySelector('.element__photo');
 
 	like.addEventListener('click', likeHandler);
-	trash.addEventListener('click', handlerDeleteCard);
+	trash.addEventListener('click', handleDeleteCard);
    title.textContent = dataCard.name;
 	photo.alt = dataCard.name;
 	photo.src = dataCard.link;

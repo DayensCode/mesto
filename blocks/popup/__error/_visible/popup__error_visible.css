@@ -3,7 +3,7 @@
 	font-family: 'Inter', Arial, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: calc(10 * (100vw / 1280));
+	font-size: 12px;
 	height: 15px;
 	color: #FF0000;
 }

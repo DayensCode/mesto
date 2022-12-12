@@ -18,11 +18,11 @@ const toggleSaveButton = (inputs, button, rest) => {
 	if (isFormValid) {
 		//Активная
 		button.classList.remove(rest.inactiveButtonClass);
-		button.disabled = '';
+		button.disabled = false;
 	} else {
 		//Неактивная
 		button.classList.add(rest.inactiveButtonClass);
-		button.disabled = 'disabled';
+		button.disabled = true;
 	}
 }
 
@@ -34,9 +34,6 @@ const enableValidation = (config) => {
 	forms.forEach(form => {
 		const inputs = [...form.querySelectorAll(config.inputSelector)];
 		const button = form.querySelector(config.submitButtonSelector);
-		form.addEventListener('submit', (e) => {
-			e.preventDefault();
-		});
 
 	inputs.forEach(input => {
 	input.addEventListener('input', () => {
