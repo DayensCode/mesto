@@ -4,7 +4,7 @@
 @import url(../vendor/fonts/fonts.css);
 
 /* импорт блока полей */
-@import url(../blocks/field/field.css);
+@import url(../blocks/fields/fields.css);
 
 /* импорт блока пейдж */
 @import url(../blocks/page/page.css);

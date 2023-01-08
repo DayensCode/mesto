@@ -1,3 +1,8 @@
+//Импорты
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+import {initialCards, config} from './constants.js';
+
 // Дом узлы
 const elementsContainer = document.querySelector('.elements');
 
@@ -28,7 +33,6 @@ const jobProfile = document.querySelector('.profile__subtitle');
 // Получаем тимплейт
 const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
 
-
 // Функции открытия-закрытия попапов
 function openPopup(element) {
 	element.classList.add('popup_opened');
@@ -38,7 +42,7 @@ function openPopup(element) {
 
 function closePopup (element) {
 	element.classList.remove('popup_opened');
-	document.removeEventListener('click', closePopupByOverlay);
+	element.removeEventListener('click', closePopupByOverlay);
 	document.removeEventListener('keydown', closePopupByEsc);
 }
 
@@ -135,5 +139,14 @@ const renderCard = (dataCard) => {
 
 // Проходимся по массиву
 initialCards.forEach((dataCard) => {
-	renderCard(dataCard);
+	const card = new Card(dataCard, '#element-template', openPopup, popupViewElement, popupPhoto, popupDescription);
+	const cardElement = card.generateCard();
+
+	elementsContainer.prepend(cardElement);
 });
+
+const formValidatorForEdit = new FormValidator(config, formEditElement);
+formValidatorForEdit.enableValidation(); //Вызов валидации
+
+const formValidatorForAdd = new FormValidator(config, formAddElement);
+formValidatorForAdd.enableValidation(); //Вызов валидации
