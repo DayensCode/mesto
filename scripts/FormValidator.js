@@ -60,6 +60,14 @@ export class FormValidator {
 		});
 	}
 
+	resetValidation() {
+      this._toggleSaveButton();//управляем кнопкой
+
+      this._inputs.forEach((input) => {
+		this._hideInputError(input)//очищаем ошибки
+      });
+	}
+
 	enableValidation() {
 		this._form.addEventListener('submit', function (evt) {
 			evt.preventDefault();

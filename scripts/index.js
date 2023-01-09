@@ -17,7 +17,6 @@ const popupOpenEditButtonElement = document.querySelector('.profile__edit-button
 const popupOpenAddButtonElement = document.querySelector('.profile__add-button');
 
 const buttonCloseList = document.querySelectorAll('.popup__close-button');
-const saveButtonElement = document.querySelector('.popup__save-button_for_add');
 
 const formEditElement = document.querySelector('.popup__form_edit');
 const formAddElement = document.querySelector('.popup__form_add');
@@ -30,19 +29,23 @@ const mestoLinkInput = formAddElement.querySelector('.popup__input_type_mesto-li
 const nameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__subtitle');
 
-// Получаем тимплейт
-const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
-
-// Функции открытия-закрытия попапов
+// Функци открытия-закрытия попапов
 function openPopup(element) {
 	element.classList.add('popup_opened');
-	element.addEventListener('click', closePopupByOverlay);
+	element.addEventListener('mousedown', closePopupByOverlay);
 	document.addEventListener('keydown', closePopupByEsc);
 };
 
+function handleCardClick(dataCard) {
+	popupPhoto.src = dataCard.link;
+	popupPhoto.alt = dataCard.name;
+	popupDescription.textContent = dataCard.name;
+	openPopup(popupViewElement);
+}
+
 function closePopup (element) {
 	element.classList.remove('popup_opened');
-	element.removeEventListener('click', closePopupByOverlay);
+	element.removeEventListener('mousedown', closePopupByOverlay);
 	document.removeEventListener('keydown', closePopupByEsc);
 }
 
@@ -71,8 +74,11 @@ popupOpenEditButtonElement.addEventListener('click', (evt) => {
 	nameInput.value=nameProfile.textContent;
 	jobInput.value=jobProfile.textContent;
 });
+
 popupOpenAddButtonElement.addEventListener('click', (evt) => {
-	openPopup(popupAddElement)});
+	openPopup(popupAddElement);
+	formValidatorForAdd.resetValidation();
+});
 
 
 // Функции отправки-сохранения введенных значений
@@ -83,63 +89,32 @@ function handleEditFormSubmit (evt) {
 	closePopup(popupEditElement);
 }
 
-function disableSaveButton (btn) {
-   btn.classList.add('popup__save-button_disabled');
-	btn.disabled = true;
-}
-
 function handleAddFormSubmit (evt) {
 	evt.preventDefault();
 	renderCard({	name: mestoTitleInput.value, 
 						link: mestoLinkInput.value })
 	formAddElement.reset();
 	closePopup(popupAddElement);
-	disableSaveButton(saveButtonElement);
 };
 
 // Навесили слушатели отправки-сохранения на форму
 formEditElement.addEventListener('submit', handleEditFormSubmit);
 formAddElement.addEventListener('submit', handleAddFormSubmit);
 
-// Функция удаления карточки
-const handleDeleteCard = (event) => {
-	event.target.closest('.element').remove();
-}
-
-// Генерация карточки
-const generateCard = (dataCard) => {
-	const newCard = cardTemplate.cloneNode(true);
-	const like = newCard.querySelector('.element__like');
-	const likeHandler = function() {
-		like.classList.toggle('element__like_active');
-	}
-	const trash = newCard.querySelector('.element__trash');
-   const title = newCard.querySelector('.element__title');
-	const photo = newCard.querySelector('.element__photo');
-
-	like.addEventListener('click', likeHandler);
-	trash.addEventListener('click', handleDeleteCard);
-   title.textContent = dataCard.name;
-	photo.alt = dataCard.name;
-	photo.src = dataCard.link;
-
-	photo.addEventListener('click', (evt) => {
-		openPopup(popupViewElement);
-		popupPhoto.src = dataCard.link;
-		popupPhoto.alt = dataCard.name;
-		popupDescription.textContent = dataCard.name;
-	});
-   return newCard;
-}
-
 // Отрисовка карточек
 const renderCard = (dataCard) => {
-	elementsContainer.prepend(generateCard(dataCard));
+	elementsContainer.prepend(createCard(dataCard));
 };
+
+function createCard(dataCard) {
+	const card = new Card(dataCard, '#element-template', openPopup, popupViewElement, popupPhoto, popupDescription);
+	const cardElement = card.generateCard();
+	return cardElement
+}
 
 // Проходимся по массиву
 initialCards.forEach((dataCard) => {
-	const card = new Card(dataCard, '#element-template', openPopup, popupViewElement, popupPhoto, popupDescription);
+	const card = new Card(dataCard, '#element-template', handleCardClick, popupViewElement, popupPhoto, popupDescription);
 	const cardElement = card.generateCard();
 
 	elementsContainer.prepend(cardElement);

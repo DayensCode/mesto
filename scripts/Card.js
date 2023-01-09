@@ -1,9 +1,9 @@
 export class Card {
-	constructor(dataCard, templateSelector, openPopup, popupViewElement, popupPhoto, popupDescription) {
+	constructor(dataCard, templateSelector, handleCardClick, popupViewElement, popupPhoto, popupDescription) {
 		this._name = dataCard.name;
 		this._link = dataCard.link;
 		this._templateSelector = templateSelector;
-		this._openPopup = openPopup;
+		this._handleCardClick = handleCardClick;
 		this._popupViewElement = popupViewElement;
 		this._popupPhoto = popupPhoto;
 		this._popupDescription = popupDescription;
@@ -39,7 +39,7 @@ export class Card {
 
 	_setEventListenerClickForPhoto() {
 		this._elementPhoto.addEventListener('click', () => {
-			this._handleOpenPopup();
+			this._handleCardClick(this._name, this._link)
 		});
 	}
 
@@ -61,19 +61,5 @@ export class Card {
 
 	_handleLikeCard(like) {
 		like.classList.toggle('element__like_active');
-	}
-
-	_handleOpenPopup() {
-		this._popupPhoto.src = this._link;
-		this._popupPhoto.alt = this._name;
-		this._popupDescription.textContent = this._name;
-		this._popupViewElement.classList.add('popup_opened');
-	}
-
-	_handleClosePopup() {
-		this._popupPhoto.src = '';
-		this._popupPhoto.alt = '';
-		this._popupDescription.textContent = '';
-		this._popupViewElement.classList.remove('popup_opened');
 	}
 }
