@@ -1,12 +1,11 @@
 export class Card {
-	constructor(dataCard, templateSelector, popupViewElement, popupPhoto, popupDescription, handleCardClick) {
+	constructor(dataCard, templateSelector, handleCardClick) {
 		this._name = dataCard.name;
 		this._link = dataCard.link;
 		this._templateSelector = templateSelector;
 		this._handleCardClick = handleCardClick;
-		this._popupViewElement = popupViewElement;
-		this._popupPhoto = popupPhoto;
-		this._popupDescription = popupDescription;
+		this._like = this._element.querySelector('.element__like');
+		this._trash = this._element.querySelector('.element__trash');
 	}
 
 	_getTemplate() {
@@ -22,11 +21,8 @@ export class Card {
 		this._element = this._getTemplate();
 		this._elementPhoto = this._element.querySelector('.element__photo');
 		this._elementTitle = this._element.querySelector('.element__title');
-		const like = this._element.querySelector('.element__like');
-      const trash = this._element.querySelector('.element__trash');
 
-
-		this._setEventListeners(like, trash);
+		this._setEventListeners();
 
 		this._elementPhoto.src = this._link;
 		this._elementPhoto.alt = this._name;
