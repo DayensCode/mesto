@@ -77,19 +77,3 @@ initialCards: initialCards,
 	modalView.setEventListeners();
 
 	const user = new UserInfo({name: '.profile__title', info: '.profile__subtitle'});
-
-	//Сергей, доброго времени!
-	//Исправила критические замечания, но, к сожалению,
-	//не могу запустить у себя dev сборку, чтобы все проверить.
-	//Терминал выдает следующее сообщение:
-	//npm ERR! Missing script: "dev"
-	//npm ERR!
-	//npm ERR! To see a list of scripts, run:
-	//npm ERR!   npm run
-
-	//npm ERR! A complete log of this run can be found in:
-	//npm ERR!     C:\Users\Alexandr\AppData\Local\npm-cache\_logs\2023-02-05T14_23_43_256Z-debug-0.log
-
-
-	//Подскажите, пожалуйста, как это поправить?
-	//Благодарю за полезнейшее ревью :)

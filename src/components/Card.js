@@ -4,8 +4,6 @@ export class Card {
 		this._link = dataCard.link;
 		this._templateSelector = templateSelector;
 		this._handleCardClick = handleCardClick;
-		this._like = this._element.querySelector('.element__like');
-		this._trash = this._element.querySelector('.element__trash');
 	}
 
 	_getTemplate() {
@@ -21,6 +19,8 @@ export class Card {
 		this._element = this._getTemplate();
 		this._elementPhoto = this._element.querySelector('.element__photo');
 		this._elementTitle = this._element.querySelector('.element__title');
+		this._like = this._element.querySelector('.element__like'); 
+		this._trash = this._element.querySelector('.element__trash');
 
 		this._setEventListeners();
 
@@ -31,14 +31,14 @@ export class Card {
 		return this._element;
 	}
 
-	_setEventListeners(like, trash) {
+	_setEventListeners() {
 		this._elementPhoto.addEventListener('click', () => {
 			this._handleCardClick(this._name, this._link);
 		});
-		like.addEventListener('click', () => {
+		this._like.addEventListener('click', () => {
 			this._handleLikeCard(like);
 		});
-		trash.addEventListener('click', () => {
+		this._trash.addEventListener('click', () => {
 			this._handleDeleteCard(trash);
 		});
 	}
