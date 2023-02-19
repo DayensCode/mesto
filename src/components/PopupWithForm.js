@@ -6,9 +6,10 @@ export class PopupWithForm extends Popup {
 		this._handleSubmit = handleSubmit;
 		this._form = this._popup.querySelector('.popup__form');
 		this._inputs = Array.from(this._form.querySelectorAll('.popup__input'));
+		this._submitButton = document.querySelector('.popup__save-button');
 	}
 	//Cобираем данные всех полей формы
-	_getInputValues() {
+	getInputValues() {
 		const inputValues = {};// Создали пустой объект
 		//Добавили в него значение каждого инпута
 		this._inputs.forEach((input) => {
@@ -21,12 +22,16 @@ export class PopupWithForm extends Popup {
 		super.setEventListeners();
 		this._form.addEventListener('submit', (evt) => {
 			evt.preventDefault();
-			this._handleSubmit(this._getInputValues());
+			this._handleSubmit(this.getInputValues());
 		})
 	}
 	//Перезпись родительского метода
 	closePopup() {
 		super.closePopup();
 		this._form.reset();
+	}
+
+	submitButton(text) {
+		this._submitButton.value = text;
 	}
 }
