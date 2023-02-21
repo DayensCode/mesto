@@ -50,8 +50,8 @@ popupOpenChangeElement.addEventListener("click", () => {
 });
 
 const user = new UserInfo(
-  { name: ".profile__title", about: ".profile__subtitle" },
-  ".profile__avatar"
+  { name: ".profile__title", about: ".profile__subtitle",
+  avatar: ".profile__avatar"}
 );
 
 const api = new Api({
