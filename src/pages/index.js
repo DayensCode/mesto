@@ -65,6 +65,7 @@ const api = new Api({
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([serverCards, userData]) => {
     user.setUserInfo(userData.name, userData.about);
+	 user.setAvatar(userData.avatar);
     userId = userData._id;
     cardList.renderItems(serverCards);
   })
@@ -179,9 +180,9 @@ function handleEditAvatar() {
     .then((res) => {
       user.setAvatar(res.avatar);
       modalChange.closePopup();
-      modalChange.submitButton("Сохранить");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
+	 .finally(modalChange.submitButton("Сохранить"))
 }
 
 const modalChange = new PopupWithForm(".popup_change", handleEditAvatar);
