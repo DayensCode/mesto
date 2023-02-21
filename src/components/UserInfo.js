@@ -12,9 +12,9 @@ export class UserInfo {
 		}
 	}
 	//Принимаем новые данные пользователя и добавляем их на страницу
-	setUserInfo(userData) {
-		this._name.textContent = userData.name;
-		this._about.textContent = userData.about;
+	setUserInfo(name, about) {
+		this._name.textContent = name;
+		this._about.textContent = about;
 	}
 
 	setAvatar(link) {
