@@ -8,34 +8,29 @@ export class FormValidator {
 		this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
 		this._button = this._form.querySelector(this._submitButtonSelector);
 	}
-
 	_showInputError(input, validationMessage) {
 		const error = this._form.querySelector(`#${input.id}-error`);
 		input.classList.add(this._inputErrorClass);
 		error.textContent = validationMessage;
 	}
-
 	_hideInputError(input) {
 		const error = this._form.querySelector(`#${input.id}-error`);
 		input.classList.remove(this._inputErrorClass);
 		error.textContent = '';
 	}
-
 	_isValid(input) {
-		if (!input.validity.valid) {
+		if(!input.validity.valid) {
 			//если введено некорректное значение покажем ошибку
 			this._showInputError(input, input.validationMessage);
 		} else {
 			this._hideInputError(input);
 		}
 	}
-
 	_hasInvalidInput() {
 		return this._inputs.some((input) => {
 			return !input.validity.valid;
 		});
 	}
-
 	_toggleSaveButton() {
 		if(this._hasInvalidInput()) {
 			//пусть кнопка будет неактивна
@@ -47,10 +42,8 @@ export class FormValidator {
 			this._button.disabled = false;
 		}
 	}
-
 	_setEventListeners = () => {
 		this._toggleSaveButton();
-
 		this._inputs.forEach((input) => {
 			input.addEventListener('input', () => {
 				this._isValid(input);
@@ -58,15 +51,12 @@ export class FormValidator {
 			});
 		});
 	}
-
 	resetValidation() {
-		this._toggleSaveButton();//управляем кнопкой
-
+		this._toggleSaveButton(); //управляем кнопкой
 		this._inputs.forEach((input) => {
-		this._hideInputError(input)//очищаем ошибки
+			this._hideInputError(input) //очищаем ошибки
 		});
 	}
-
 	enableValidation() {
 		this._setEventListeners();
 	}

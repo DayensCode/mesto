@@ -8,8 +8,8 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	position: absolute;
-	top: 164px;
-	left: 116px;
+	top: 163px;
+	left: 172px;
 }
 
 .profile__change-button:hover::before {
