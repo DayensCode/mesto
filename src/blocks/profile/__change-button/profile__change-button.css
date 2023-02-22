@@ -1,17 +1,11 @@
-.profile__change-button::before {
+.profile__change-button {
 	content: "";
 	background: black;
-	opacity: 0;
-	width: 120px;
-	height: 120px;
+	width: 100%;
+	height: 100%;
 	background-image: url(../../../images/profile-change-button.svg);
 	background-repeat: no-repeat;
 	background-position: center;
-	position: absolute;
-	top: 163px;
-	left: 172px;
-}
-
-.profile__change-button:hover::before {
-	opacity: 0.8;
+	z-index: 1;
+	padding: 0;
 }
