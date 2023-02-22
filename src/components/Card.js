@@ -34,6 +34,7 @@ export class Card {
 		if (this._userId !== this._ownerId) {
 			this._trash.remove();
 		}
+		this.updateCounter(this._likes);
 
 		//навешиваем обработчик событий
 		this._setEventListeners();

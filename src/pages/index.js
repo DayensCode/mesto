@@ -55,9 +55,9 @@ const user = new UserInfo(
 );
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-59",
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-60",
   headers: {
-    authorization: "33af4097-04f9-4bd1-a567-06d34ef10bd4",
+    authorization: "480b5a02-860e-4e93-b3ff-2cb152b07e87",
     "Content-Type": "application/json",
   },
 });
