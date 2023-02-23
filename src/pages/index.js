@@ -131,13 +131,13 @@ const modalEdit = new PopupWithForm(".popup_edit", (data) => {
 });
 modalEdit.setEventListeners();
 const modalAdd = new PopupWithForm(".popup_add", (values) => {
-  modalAdd.changeButtonText('Сохранение...');
+  modalAdd.changeButtonText("Сохранение...");
   api
     .addCard(values)
     .then((res) => cardList.addItem(createCard(res)))
     .then(() => modalAdd.closePopup())
     .catch((err) => console.log(err))
-    .finally(() => modalAdd.changeButtonText('Сохранить'));
+    .finally(() => modalAdd.changeButtonText("Создать"));
 });
 modalAdd.setEventListeners();
 const modalView = new PopupWithImage(".popup_view");
