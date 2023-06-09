@@ -1,16 +1,18 @@
-# Учебный frontend-проект: "Место"
+# Ftend-проект: "Место"
 
 ## Описание проекта
 
-Данная проектная работа выполнена в рамках образовательной программы Яндекс Практикума.Проект - сервис Место: интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
+Проект - сервис Место: интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
+
+![image](https://user-images.githubusercontent.com/92729800/204303554-fd708625-c724-46f9-9045-261b69f63b27.png)
 
 ### Ссылка на макет
 
-(https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1
 
 ### Ссылка на проект
 
-(https://dayenscode.github.io/mesto/)
+https://dayenscode.github.io/mesto/
 
 ## Используемые языки
 
