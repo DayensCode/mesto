@@ -4,7 +4,7 @@
 
 Интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.
 
-![image](https://user-images.githubusercontent.com/92729800/204303554-fd708625-c724-46f9-9045-261b69f63b27.png)
+![image](https://github.com/DayensCode/mesto/blob/main/screen-for-readme.png)
 
 ### Ссылка на макет
 
